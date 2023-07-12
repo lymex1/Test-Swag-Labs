@@ -1,5 +1,6 @@
 from locators.locators_log_in_page import LogInPageLocators as login_locators
 from locators.catalog_locators import CatalogLocators as catalog_locators
+from locators.checkout_locators import CheckOutLocators as checkout_locators
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 
@@ -22,4 +23,20 @@ class LogInPage(BasePage):
         NAME = '-'.join(NAME)
         self.element_is_visibale((By.CSS_SELECTOR, f'#add-to-cart-{NAME.lower()}')).click()
         self.element_is_visibale(catalog_locators.CART).click()
+
+    def checkout_overview(self):
+
+        """This function and process and buy product"""
+        self.element_is_visibale(checkout_locators.CHECKOUT_BUTTON).click()
+        self.element_is_visibale(checkout_locators.FIRST_NAME).send_keys('Egor')
+        self.element_is_visibale(checkout_locators.LAST_NAME).send_keys('Karinkin')
+        self.element_is_visibale(checkout_locators.POSTAL_CODE).send_keys('123')
+        self.element_is_visibale(checkout_locators.CONTINUE_BUTTON).click()
+        self.element_is_visibale(checkout_locators.FINISH_BUTTON).click()
+        finish_text = self.element_is_visibale(checkout_locators.COMPLETE_TEXT).text
+
+        return finish_text
+
+
+
 
