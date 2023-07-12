@@ -26,7 +26,7 @@ class LogInPage(BasePage):
 
     def checkout_overview(self):
 
-        """This function and process and buy product"""
+        """This function end process and buy product"""
         self.element_is_visibale(checkout_locators.CHECKOUT_BUTTON).click()
         self.element_is_visibale(checkout_locators.FIRST_NAME).send_keys('Egor')
         self.element_is_visibale(checkout_locators.LAST_NAME).send_keys('Karinkin')
