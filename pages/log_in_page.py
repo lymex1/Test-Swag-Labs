@@ -25,29 +25,26 @@ class LogInPage(BasePage):
         NAME_FROM_CATALOG = self.element_is_visibale(catalog_locators.CARD).text
         NAME_FROM_CATALOG = NAME_FROM_CATALOG.split(' ')
         NAME_FROM_CATALOG = '-'.join(NAME_FROM_CATALOG)
-        self.element_is_visibale((By.CSS_SELECTOR, f'#add-to-cart-{NAME_FROM_CATALOG.lower()}')).click()
+        ADD_TO_CART = (By.ID, f'add-to-cart-{NAME_FROM_CATALOG.lower()}')
+        self.element_is_visibale(ADD_TO_CART).click()
         self.element_is_visibale(catalog_locators.CART).click()
 
     def add_card_and_go_to_cart_from_card_details(self):
         NAME_FROM_CARD = self.element_is_visibale(catalog_locators.NAME_FROM_CARD).text
         NAME_FROM_CARD = NAME_FROM_CARD.split(' ')
         NAME_FROM_CARD = '-'.join(NAME_FROM_CARD)
-        self.element_is_visibale((By.CSS_SELECTOR, f'#add-to-cart-{NAME_FROM_CARD.lower()}')).click()
+        ADD_TO_CART = (By.ID, f'add-to-cart-{NAME_FROM_CARD.lower()}')
+        self.element_is_visibale(ADD_TO_CART).click()
         self.element_is_visibale(catalog_locators.CART).click()
 
     def checkout_overview(self):
-
         """This function end process and buy product"""
         self.element_is_visibale(checkout_locators.CHECKOUT_BUTTON).click()
-        self.element_is_visibale(checkout_locators.FIRST_NAME).send_keys('Egor')
-        self.element_is_visibale(checkout_locators.LAST_NAME).send_keys('Karinkin')
+        self.element_is_visibale(checkout_locators.FIRST_NAME).send_keys('ladim')
+        self.element_is_visibale(checkout_locators.LAST_NAME).send_keys('ladimirov')
         self.element_is_visibale(checkout_locators.POSTAL_CODE).send_keys('123')
         self.element_is_visibale(checkout_locators.CONTINUE_BUTTON).click()
         self.element_is_visibale(checkout_locators.FINISH_BUTTON).click()
         finish_text = self.element_is_visibale(checkout_locators.COMPLETE_TEXT).text
 
         return finish_text
-
-
-
-
